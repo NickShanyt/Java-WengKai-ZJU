@@ -23,7 +23,7 @@ public class Main {
 		a.plus(b).print();
 
 		a.multiply(b).plus(new Fraction(5,6)).print(); 
-		//ÊäÈëµÄÁ½ÊıÏÈ³Ë£¬ºóÔÙ¼ÓÉÏ5/6
+		//è¾“å…¥çš„ä¸¤æ•°å…ˆä¹˜ï¼Œåå†åŠ ä¸Š5/6
 
 		a.print();
 
@@ -46,7 +46,7 @@ class Fraction{
 		this.b=b;
 		ab=a/b;
 	}
-	public double ToDouble() //½«·ÛÊé×ª»»Îªdouble
+	public double ToDouble() //å°†ç²‰ä¹¦è½¬æ¢ä¸ºdouble
 	{
 
 		return (double)ab;
@@ -54,10 +54,11 @@ class Fraction{
 	
 	public Fraction plus(Fraction r)
 	{
-		int bp=this.b * r.b; //Î´¾­»¯¼òµÃ·ÖÄ¸
+		int bp=this.b * r.b; //æœªç»åŒ–ç®€å¾—åˆ†æ¯
 		int ap1=this.a * r.b; 
-		int ap2=r.a *this.b; //ap1+ap2ÎªÎ´¾­»¯¼òµÃ·Ö×Ó
-		//¿¼ÂÇ»¯¼ò£¬ÀûÓÃ×î´ó¹«Ô¼Êı½øĞĞ»¯¼ò-Ö±½ÓÓÃÖ®Ç°Ğ´¹ıµÃ·½·¨
+		int ap2=r.a *this.b; //ap1+ap2ä¸ºæœªç»åŒ–ç®€å¾—åˆ†å­
+		//è€ƒè™‘åŒ–ç®€ï¼Œåˆ©ç”¨æœ€å¤§å…¬çº¦æ•°è¿›è¡ŒåŒ–ç®€-ç›´æ¥ç”¨ä¹‹å‰å†™è¿‡å¾—æ–¹æ³•
+		//ä¼˜åŒ–ï¼š ç›´æ¥åœ¨printå‡½æ•°ä¸­å†åšåŒ–ç®€
 		int gcd = gcDivisor(ap1+ap2,bp);
 		Fraction plus = new Fraction((ap1+ap2)/gcd,bp/gcd);
 		return plus;
@@ -77,7 +78,7 @@ class Fraction{
 	public Fraction multiply(Fraction r)
 	{
 		Fraction mul = new Fraction(this.a * r.a,this.b * r.b);
-		System.out.println("ÊäÈëÁ½¸ö·ÖÊıÏà³Ë="+mul.a+"/"+mul.b);
+		System.out.println("è¾“å…¥ä¸¤ä¸ªåˆ†æ•°ç›¸ä¹˜="+mul.a+"/"+mul.b);
 		return mul;
 	}
 	public void print()
@@ -87,6 +88,9 @@ class Fraction{
 			System.out.println("1");
 		}
 		else {
+			int gcd = gcDivisor(this.a,this.b);
+			this.a=this.a/gcd;
+			this.b=this.b/gcd;
 			System.out.println((this.a)+"/"+(this.b));
 		}
 	}
